@@ -26,16 +26,11 @@ class FormatAmt(object):
     def amount(self, dollars, cents):
         #wait array
         amount = '$'
-        com_dollars = []
         str_dollars = str(dollars)
-        counter=0
-        for i in range(len(str_dollars)-1, -1, -1):
-            counter +=1
-            com_dollars.insert(0, str_dollars[i])
-            if((counter) % 3==0) and (i!=len(str_dollars)-1) and i!=0:
-                com_dollars.insert(0, ',')
-                counter = 0
-            #print(com_dollars)
+        com_dollars = [x for x in str_dollars]
+
+        for i in range(-4, -len(com_dollars)-1, -3):
+            com_dollars[i] = com_dollars[i] + ","
 
         amount += ''.join(com_dollars) + '.'
         if(cents<10):
@@ -47,4 +42,4 @@ class FormatAmt(object):
 
 test = FormatAmt()
 
-print(test.amount(24222239, 1))
+print(test.amount(1000, 1))
