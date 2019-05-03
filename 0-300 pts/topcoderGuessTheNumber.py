@@ -1,3 +1,4 @@
+import random
 #Problem Statement
 #    
 #A popular guessing game is "Guess the number", where one person selects a number in a known range, and another person tries to guess that number. After each guess, the first person reveals whether the guess was correct, too high or too low.
@@ -43,8 +44,32 @@ class GuessTheNumber(object):
 
         return count
 
+    def noGuessesRecur(self, upper, answer, lower=1, count=1):
+        guess = (upper+lower)//2
+        if (guess==answer):
+            return count
+
+        if(guess<answer):
+            lower = guess+1
+        else:
+            upper = guess-1
+
+        count+=1
+        return self.noGuessesRecur(upper, answer, lower, count)
+
+    def stress_test(self, upper_range):
+
+        up = random.randint(1, upper_range)
+        ans = random.randint(1, up)
+        while(self.noGuessesRecur(up, ans)==self.noGuesses(up, ans)):
+            up = random.randint(1, upper_range)
+            ans = random.randint(1, up)
+            print(self.noGuessesRecur(up, ans), self.noGuesses(up, ans))
+        else:
+            print(self.noGuessesRecur(up, ans), self.noGuesses(up, ans))
+        print('Broke here')
 
 
 test = GuessTheNumber()
 
-print(test.noGuesses(9, 6))
+print(test.stress_test(100000))
