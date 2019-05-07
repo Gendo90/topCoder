@@ -1,3 +1,4 @@
+import random
 #    
 #In documents, it is frequently necessary to write monetary amounts in a standard format. We have decided to format amounts as follows:
 #the amount must start with '$'
@@ -40,6 +41,24 @@ class FormatAmt(object):
 
         return amount
 
+    def amount_redone(self, dollars, cents):
+        total_float = dollars+(cents/100)
+        total = '${:,.2f}'.format(total_float)
+        return total
+
+    def stress_test(self, max_dollars, max_cents):
+        while(True):
+            dol = random.randint(0, max_dollars)
+            cen = random.randint(0, max_cents)
+            first = self.amount(dol, cen)
+            second = self.amount_redone(dol, cen)
+            print(first, second)
+            if(first!=second):
+                print('Broke Here!')
+                break
+
 test = FormatAmt()
 
-print(test.amount(1000, 1))
+print(test.amount(50, 1))
+print(test.amount_redone(0, 5))
+test.stress_test(10000000, 99)
