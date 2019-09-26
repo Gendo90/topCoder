@@ -26,4 +26,6 @@ class AccessLevel(object):
 
 test = AccessLevel()
 
-print(test.canAccess(tuple(1), 20))
+#workaround that is good to know about!
+print(test.canAccess((1,), 20))
+# print(test.canAccess(tuple(1), 20))
