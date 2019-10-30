@@ -21,9 +21,8 @@
 # def applyDecoration(self, name, commands, decorations):
 
 
-#Gendo90 has submitted the 250-point problem for 221.38 points
+#Gendo90 has submitted the 250-point problem for 220.53 points
 #Successful on first try!
-#A little tricky to get the mid-1 part (because the array index starts at 0)
 class SignatureDecorator(object):
     def applyDecoration(self, name, commands, decorations):
         output = name
